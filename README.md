@@ -10,7 +10,7 @@ Lorsque l'on fait un `git status`, on constate le dossier `test` n'est pas recon
 
 ## Les zones
 
-![Zones](screenshot-github.com-2024.11.22-11_40_15.png)
+![Zones](img/screenshot-github.com-2024.11.22-11_40_15.png)
 
 ### Création d'un dépôt `git` 
 
