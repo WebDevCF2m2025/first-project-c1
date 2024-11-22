@@ -54,7 +54,7 @@ git commit -m"First commit with README.md "
 
 Nous allons créer un repository sur github, public ou privé, sans cocher les autres options (il ne doit pas y avoir de commit sur github autres que ceux en local)
 
-IMG
+![création d'un répertoire](img/screenshot-github.com-2024.11.22-09_58_09.png)
 
 Nous devons récupérer le répertoire en `SSH` si nous utilisons l'échange de clef : [Lier avec SSH](https://github.com/WebDevCF2m/prefo-git-c1?tab=readme-ov-file#lier-votre-compte-et-votre-pc) ou en `https`.
 
@@ -84,7 +84,7 @@ git push -u origin main
 
 Nous pourrons ensuite envoyer notre travail sur `origin main` avec :
 
-		git push
+	git push
 
 
 
