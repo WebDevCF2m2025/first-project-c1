@@ -38,6 +38,11 @@ git add lenomdunfichier.txt
 git add .
 ```
 
+Pour retirer du `staging` :
+
+	git restore --staged nomdufichier.
+
+
 Lorsque nous allons refaire un `git status`, les fichiers qui sont prêts à être sauvegardés seront en **vert**, ceux qui ne seront pas envoyés restent en **rouge**
 
 
@@ -85,8 +90,5 @@ git push -u origin main
 Nous pourrons ensuite envoyer notre travail sur `origin main` avec :
 
 	git push
-
-
-
 
 
