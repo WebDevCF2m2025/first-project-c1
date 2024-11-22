@@ -50,5 +50,43 @@ Nous allons sauvegarder un fichier en utilisant le `commit` :
 git commit -m"First commit with README.md "
 ```
 
+### Zone de `repository remote`
+
+Nous allons créer un repository sur github, public ou privé, sans cocher les autres options (il ne doit pas y avoir de commit sur github autres que ceux en local)
+
+IMG
+
+Nous devons récupérer le répertoire en `SSH` si nous utilisons l'échange de clef : [Lier avec SSH](https://github.com/WebDevCF2m/prefo-git-c1?tab=readme-ov-file#lier-votre-compte-et-votre-pc) ou en `https`.
+
+Nous retournons dans la console, et nous allons lier le projet local avec le projet distant : 
+
+```bash
+# on s'assure que que la branche soit `main`
+git branch -M main
+
+# On ajoute notre lien vers le répertoire `github`
+git remote add origin git@github.com:WebDevCF2m2025/first-project-c1.git
+```
+
+On peut vérifier le lien avec : 
+
+```bash
+git remote -v 
+```
+
+Nous pouvons maintenant envoyer notre travail en ligne sur `github` : 
+
+```bash
+# le -u n'est à mettre que la première fois
+# il équivaut à git push --set-upstream origin main
+git push -u origin main
+```
+
+Nous pourrons ensuite envoyer notre travail sur `origin main` avec :
+
+		git push
+
+
+
 
 
