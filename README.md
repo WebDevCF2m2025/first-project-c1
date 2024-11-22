@@ -8,6 +8,10 @@ Pour l'exemple, on va créer un dossier `test` vide:
 
 Lorsque l'on fait un `git status`, on constate le dossier `test` n'est pas reconnu. Les dossiers vides ne sont reconnus !
 
+## Les zones
+
+![Zones](screenshot-github.com-2024.11.22-11_40_15.png)
+
 ### Création d'un dépôt `git` 
 
 Ouvrez la console et tapez :
