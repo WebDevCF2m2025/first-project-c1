@@ -38,5 +38,17 @@ git add lenomdunfichier.txt
 git add .
 ```
 
-Lorsque nous allons refaire un `git status`, les fichiers qui sont prêts à être sauvegardés seront en **vert**
+Lorsque nous allons refaire un `git status`, les fichiers qui sont prêts à être sauvegardés seront en **vert**, ceux qui ne seront pas envoyés restent en **rouge**
+
+
+### Zone de `repository local`
+
+Nous allons sauvegarder un fichier en utilisant le `commit` :
+
+```bash
+# sauvegarde avec commentaire
+git commit -m"First commit with README.md "
+```
+
+
 
