@@ -4,13 +4,7 @@
 
 Dans le projet de travail sur notre ordinateur, `first-proj-c1`, nous avons créé un fichier `README.md` et un dossier `img` qui contiendra des captures d'écran.
 
-Pour l'exemple, on va créer un dossier `test` vide:
-
-Lorsque l'on fait un `git status`, on constate le dossier `test` n'est pas reconnu. Les dossiers vides ne sont reconnus !
-
-## Les zones
-
-![Zones](img/screenshot-github.com-2024.11.22-11_40_15.png)
+Si on fait un `git status`, nous obtenons l'erreur : `fatal: not a git repository (or any of the parent directories): .git`.
 
 ### Création d'un dépôt `git` 
 
@@ -19,6 +13,18 @@ Ouvrez la console et tapez :
 ```bash
 git init
 ```
+
+Un dossier caché est créé, il se nomme `.git`. C'est lui qui va contenir les fichiers et l'historique de travail. Ce fichier `.git` ne devra pas être envoyé via `FTP`.
+
+Pour l'exemple, on va créer un dossier `test` vide:
+
+Lorsque l'on fait un `git status`, on constate le dossier `test` n'est pas reconnu. Les dossiers vides ne sont pas reconnus !
+
+## Les zones
+
+![Zones](img/screenshot-github.com-2024.11.22-11_40_15.png)
+
+
 
 ### Zone de `working`
 
@@ -42,12 +48,16 @@ git add lenomdunfichier.txt
 git add .
 ```
 
-Pour retirer du `staging` :
+Pour retirer  du `staging` si on a pas encore celui-ci dans un commit :
+
+	git rm --cached nomdufichier.
+
+Pour retirer du `staging` si on a déjà un commit :
 
 	git restore --staged nomdufichier.
 
 
-Lorsque nous allons refaire un `git status`, les fichiers qui sont prêts à être sauvegardés seront en **vert**, ceux qui ne seront pas envoyés restent en **rouge**
+Lorsque nous allons refaire un `git status`, les fichiers qui sont prêts à être sauvegardés seront en **vert**, ceux qui ne seront pas sauvegardés restent en **rouge**.
 
 
 ### Zone de `repository local`
@@ -58,6 +68,12 @@ Nous allons sauvegarder un fichier en utilisant le `commit` :
 # sauvegarde avec commentaire
 git commit -m"First commit with README.md "
 ```
+
+#### Voir les `commit`
+
+Permet de voir les commit.
+
+	git log
 
 ### Zone de `repository remote`
 
@@ -96,3 +112,121 @@ Nous pourrons ensuite envoyer notre travail sur `origin main` avec :
 	git push
 
 
+## Récupération du repository
+
+Pour récupérer simplement un repository, on peut utiliser le clonage (première fois !), dont on est propriétaire (ou un `fork`) :
+
+```bash
+git clone CLEF_SSH (ou https)
+cd nom_du_répertoire
+
+# pour voir le remote créé
+git remote -v
+```
+	
+Et nous pouvons travailler en local sur le projet.
+
+### Récupération de commit
+
+Pour récupérer les nouveaux commit ou commit non présents en local (par exemple travail sur plusieures machines) :
+
+```bash
+# recupère le dossier .git (vérification de modification)
+git fetch
+
+# si il y a des changents, récupération du dossier .git
+# Et des fichiers physiques
+git pull
+
+```
+
+### Retour sur un commit
+
+#### On peut revenir sur un ancien commit, sans perdre les changements actuels des fichiers
+
+```bash
+# on avait envoyé 4 commits en ligne
+git push
+
+# retourne sur un ancien commit 
+# ! disparition des commit qui suivent
+git reset 0901dfac84
+
+# on back 3 commits, 
+# sans modifier les fichiers physiques
+# en crant un nouveau commit
+git add .
+git commit -m"-3 commits + save files"
+```
+
+Si on effectue un `git push` on aura une erreur car il y a une incompatibilité de la chaîne de commit, une bifurcation.
+
+**seule possibilitée** : forcer le push :
+
+	git push --force origin main 
+	
+#### On peut revenir sur un ancien commit en remettant les fichiers à l'état de ce commit
+
+```bash
+# création d'un fichier
+echo "blabla" > f.txt
+git add .
+git commit -m"f.txt"
+git push
+
+# création d'un deuxième fichier
+echo "blabla2" > f2.txt
+git add .
+git commit -m"f2.txt"
+git push
+
+
+# retourne sur un ancien commit 
+# ! disparition des commit qui suivent
+# ! disparition des fichiers ou modifications de ceux-ci
+git reset --hard 5d61f7a
+
+# on back 3 commits, 
+# sans modifier les fichiers physiques
+# en crant un nouveau commit
+git add .
+git commit -m"-3 commits + save files"
+```
+
+Si on effectue un `git push` on aura une erreur car il y a une incompatibilité de la chaîne de commit, une bifurcation.
+
+**seule possibilitée** : forcer le push :
+
+	git push --force origin main 
+	
+## Bonnes pratiques
+
+### Utilisation de branches
+
+Pour voir les branches :
+
+	git branch
+
+Par défaut nous avons que `main`
+
+Pour créer un branche (à partir de la branche actuelle active)
+
+	git branch nomDeLaBranche
+
+Pour accéder à la branche
+
+	git switch nomDeLaBranche
+	
+Pour retourner sur la main
+
+	git switch main
+
+Pour envoyer une branche en ligne
+
+	git push origin nomDeLaBranche
+
+pour supprimer une branche en local
+
+	git branch -d nomDeLaBranche
+
+Pour supprimer une branche sur github, passez par github (mauvaise pratique)
